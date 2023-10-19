@@ -13,6 +13,7 @@ public aspect Loggear {
 	//Archivo Loggear
 	 private SimpleDateFormat fecha = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
 	 File file = new File("Register.txt");
+	 File file2 = new File("Log.txt");
 	 Calendar cal;
 	 pointcut success() : call(* successfulSignUp*(..) );
 	    after() : success() {
@@ -38,21 +39,15 @@ public aspect Loggear {
 	    
 	    }
 	    
-	    private void recordAction(String fileName, User user, String actionType) {
-			File file = new File(fileName);
-			String time = fecha.format(Calendar.getInstance().getTime());
-
-			try (PrintWriter out = new PrintWriter(new FileWriter(file, true))) {
-			String message;
-			if (actionType.equals("Usuario registrado")) {
-			message = actionType + ": [nickname=" + user.getNickname() + ", password=" + user.getPassword() + "] Fecha: [" + time + "]";
-			} else {
-			message = actionType + " por usuario: [" + user.getNickname() + "] Fecha: [" + time + "]";
-			}
-			System.out.println(message);
-			out.println(message);
+	    private void recordAction(File file, User user, String actionType) {
+			this.cal = Calendar.getInstance();
+			String message =  actionType + " ["+user.getNickname()+"]    Fecha: [" + cal.getTime() + "]";
+			try (PrintWriter printw = new PrintWriter(new FileWriter(file, true))) {		
+				printw.println("\n"+message);
+				System.out.println(message);
+				printw.close();
 			} catch (IOException e) {
-			e.printStackTrace();
+				System.out.println("Error al guardar información en archivo: " + e.getMessage());
 			}
 		}
 		
@@ -62,9 +57,9 @@ public aspect Loggear {
 		after() returning : loginAndLogoutUser() {
 			User user = (User)thisJoinPoint.getArgs()[0];
 			if (thisJoinPoint.getSignature().getName().equals("effectiveLogIn")) {
-				recordAction("Log.txt", user, "Sesión iniciada");
+				recordAction(file2, user, "Sesión iniciada por usuario : ");
 			} else if (thisJoinPoint.getSignature().getName().equals("effectiveLogOut")) {
-				recordAction("Log.txt", user, "Sesión cerrada");
+				recordAction(file2, user, "Sesión cerrada por usuario :");
 			}
 		}
 

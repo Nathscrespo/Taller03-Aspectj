@@ -3,3 +3,7 @@ Usuario registrado: [nickname=ctingo08, password=carlos08052002] Fecha: [mié oc
 Usuario Registrado ->[nickname = ctingo,password = carlos22132] Fecha: [Wed Oct 18 21:34:35 ECT 2023]
 
 Usuario Registrado ->[nickname = nc,password = 123] Fecha: [Wed Oct 18 21:51:14 ECT 2023]
+
+Usuario Registrado ->[nickname = klashz,password = 123456] Fecha: [Wed Oct 18 22:05:32 ECT 2023]
+
+Usuario Registrado ->[nickname = klashz,password = 123456] Fecha: [Wed Oct 18 22:06:23 ECT 2023]
