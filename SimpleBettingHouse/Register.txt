@@ -1,0 +1,3 @@
+Usuario registrado: [nickname=ctingo08, password=carlos08052002] Fecha: [mié oct. 18 21:19:48 ECT 2023]
+
+Usuario Registrado ->[nickname = ctingo,password = carlos22132] Fecha: [Wed Oct 18 21:34:35 ECT 2023]
